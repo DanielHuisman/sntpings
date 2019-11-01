@@ -45,8 +45,8 @@ for x in range(0, image.width):
             offset_x + x,
             offset_y + y,
             pixels[x, y][2],
-            pixels[x, y][0],
             pixels[x, y][1],
+            pixels[x, y][0],
             pixels[x, y][3]
         )
 
