@@ -32,7 +32,7 @@ def ping(destination_address):
 
     raw_socket.sendto(icmp.get_packet(), (destination_address, 0))
 
-image = Image.open('image_background.png')
+image = Image.open('image.png')
 pixels = image.load()
 
 offset_x = int(1920 / 8)

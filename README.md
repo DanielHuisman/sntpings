@@ -1,2 +1,3 @@
-# sntpings
-Ping script for SNTpings
+# SNTpings
+
+Ping script for [SNTpings](jinglepings.utwente.io)
