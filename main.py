@@ -1,9 +1,10 @@
 import netifaces
+import random
 import socket
 from impacket import IP6, ICMP6
 from PIL import Image
 
-net_addresses = netifaces.ifaddresses('eno1')
+net_addresses = netifaces.ifaddresses('ens18')
 source_address = net_addresses[netifaces.AF_INET6][0]['addr']
 
 raw_socket = socket.socket(socket.AF_INET6, socket.SOCK_RAW, socket.IPPROTO_ICMPV6)
@@ -35,8 +36,8 @@ def ping(destination_address):
 image = Image.open('image.png')
 pixels = image.load()
 
-offset_x = int(1920 / 8)
-offset_y = int(1080 / 2)
+offset_x = 600
+offset_y = 550
 
 addresses = {}
 for x in range(0, image.width):
@@ -53,6 +54,7 @@ for x in range(0, image.width):
 print(f'Pinging {image.width}x{image.height}={image.width * image.height} pixels...')
 
 while True:
-    for x in range(0, image.width):
-        for y in range(0, image.height):
-            ping(addresses[x, y])
+    x = random.randint(0, image.width - 1)
+    y = random.randint(0, image.height - 1)
+    if pixels[x,y][3] != 0:
+        ping(addresses[x, y])
